@@ -1,8 +1,11 @@
 package com.example.githubapiintegrationhomework;
 
 import com.example.githubapiintegrationhomework.GithubClient.BranchGithubResponseDto;
-import com.example.githubapiintegrationhomework.GithubClient.GitHubRepositoriesProxy;
+import com.example.githubapiintegrationhomework.model.DatabaseEntity;
+import com.example.githubapiintegrationhomework.service.GitHubRepositoriesProxy;
 import com.example.githubapiintegrationhomework.GithubClient.RepositoryGithubResponseDto;
+import com.example.githubapiintegrationhomework.service.GitHubRepositoryService;
+import com.example.githubapiintegrationhomework.service.RepositoryMapper;
 import feign.FeignException;
 import feign.RetryableException;
 import lombok.extern.log4j.Log4j2;
@@ -12,10 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.HttpHeaders;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -23,7 +25,7 @@ import java.util.List;
 public class GitHubApiIntegrationHomeworkApplication {
 
     @Autowired
-    GitHubRepositoriesProxy gitHubRepositoriesClient;
+    GitHubRepositoryService gitHubRepositoryClient;
 
     public static void main(String[] args) {
         SpringApplication.run(GitHubApiIntegrationHomeworkApplication.class, args);
@@ -33,23 +35,11 @@ public class GitHubApiIntegrationHomeworkApplication {
     public void run() {
         try {
 
-            List<RepositoryGithubResponseDto> repositories = Arrays.stream(gitHubRepositoriesClient.fetchListRepositoriesForAUser("kalqa")).toList();
-            ArrayList<String> repositoriesNames = new ArrayList<>();
-            repositories.forEach(
-                    repositoryGithubResponseDto ->
-                            repositoriesNames.add(repositoryGithubResponseDto.name())
-            );
+            String requestUsername = "kalqa";
 
-//            repositoriesNames.forEach(
-//                    log::info
-//            );
+            DatabaseEntity databaseEntityByUsername = gitHubRepositoryClient.getDatabaseEntityByUsername(requestUsername);
 
-            List<BranchGithubResponseDto> branches = Arrays.stream(gitHubRepositoriesClient.fetchListBranchesForARepository(repositories.get(3).owner().login(), repositoriesNames.get(3))).toList();
-
-            branches.forEach(
-                    branchGithubResponseDto ->
-                           log.info(branchGithubResponseDto.name())
-            );
+            log.info(databaseEntityByUsername);
 
         } catch (FeignException.FeignClientException feignException) {
             log.error("client exception: " + feignException.status());
