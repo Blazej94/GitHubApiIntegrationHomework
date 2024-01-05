@@ -1,6 +1,5 @@
-package com.example.githubapiintegrationhomework.service;
+package com.example.githubapiintegrationhomework.GithubClient;
 
-import com.example.githubapiintegrationhomework.GithubClient.RepositoryGithubResponseDto;
 import com.example.githubapiintegrationhomework.RepositoryRepository;
 import com.example.githubapiintegrationhomework.model.DatabaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class GitHubRepositoryService {
 
     public DatabaseEntity getDatabaseEntityByUsername(String username) {
         List<RepositoryGithubResponseDto> repositories = Arrays.stream(gitHubRepositoriesClient.fetchListRepositoriesForAUser(username)).toList();
-        DatabaseEntity database = repositoryDatabase.saveToDatabase(username, repositoryMapper.mapperFromRepositoryGithubResponseDtoListToRepositoryList(repositories));
+        DatabaseEntity database = repositoryDatabase.saveToDatabase(username, repositoryMapper.mapFromRepositoryGithubResponseDtoListToRepositoryList(repositories));
         return database;
     }
 }

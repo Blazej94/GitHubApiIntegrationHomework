@@ -1,7 +1,5 @@
-package com.example.githubapiintegrationhomework.service;
+package com.example.githubapiintegrationhomework.GithubClient;
 
-import com.example.githubapiintegrationhomework.GithubClient.BranchGithubResponseDto;
-import com.example.githubapiintegrationhomework.GithubClient.RepositoryGithubResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
