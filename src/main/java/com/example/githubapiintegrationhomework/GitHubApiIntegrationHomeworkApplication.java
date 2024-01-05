@@ -1,5 +1,8 @@
 package com.example.githubapiintegrationhomework;
 
+import com.example.githubapiintegrationhomework.GithubClient.BranchGithubResponseDto;
+import com.example.githubapiintegrationhomework.GithubClient.GitHubRepositoriesProxy;
+import com.example.githubapiintegrationhomework.GithubClient.RepositoryGithubResponseDto;
 import feign.FeignException;
 import feign.RetryableException;
 import lombok.extern.log4j.Log4j2;
@@ -30,15 +33,22 @@ public class GitHubApiIntegrationHomeworkApplication {
     public void run() {
         try {
 
-            List<RepositoryDto> repositories = Arrays.stream(gitHubRepositoriesClient.fetchListRepositoriesForAUser("kalqa")).toList();
+            List<RepositoryGithubResponseDto> repositories = Arrays.stream(gitHubRepositoriesClient.fetchListRepositoriesForAUser("kalqa")).toList();
             ArrayList<String> repositoriesNames = new ArrayList<>();
             repositories.forEach(
-                    repositoryDto ->
-                            repositoriesNames.add(repositoryDto.name())
+                    repositoryGithubResponseDto ->
+                            repositoriesNames.add(repositoryGithubResponseDto.name())
             );
 
-            repositoriesNames.forEach(
-                    log::info
+//            repositoriesNames.forEach(
+//                    log::info
+//            );
+
+            List<BranchGithubResponseDto> branches = Arrays.stream(gitHubRepositoriesClient.fetchListBranchesForARepository(repositories.get(3).owner().login(), repositoriesNames.get(3))).toList();
+
+            branches.forEach(
+                    branchGithubResponseDto ->
+                           log.info(branchGithubResponseDto.name())
             );
 
         } catch (FeignException.FeignClientException feignException) {

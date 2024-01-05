@@ -1,4 +1,4 @@
 package com.example.githubapiintegrationhomework;
 
-public record OwnerDto(String login) {
+public record Branch(String name, String commit) {
 }
