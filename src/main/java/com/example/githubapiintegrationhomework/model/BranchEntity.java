@@ -1,4 +1,4 @@
 package com.example.githubapiintegrationhomework.model;
 
-public record Branch(String name, String commit) {
+public record BranchEntity(String name, String commit) {
 }
