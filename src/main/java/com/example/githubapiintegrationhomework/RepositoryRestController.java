@@ -1,11 +1,12 @@
 package com.example.githubapiintegrationhomework;
 
-import com.example.githubapiintegrationhomework.GithubClient.GitHubRepositoryService;
-import com.example.githubapiintegrationhomework.Server.ClientResponseDto;
+import com.example.githubapiintegrationhomework.githubClient.GitHubRepositoryService;
+import com.example.githubapiintegrationhomework.server.ClientResponseDto;
 import com.example.githubapiintegrationhomework.model.DatabaseEntity;
 import com.example.githubapiintegrationhomework.service.ClientMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,9 +21,11 @@ public class RepositoryRestController {
     ClientMapper mapper;
 
     @GetMapping("/{username}")
-    public ClientResponseDto getRepositoriesByUsername(@RequestHeader(required = false) String accept, @PathVariable String username) {
+    public ResponseEntity<ClientResponseDto> getRepositoriesByUsername(@PathVariable String username){
         DatabaseEntity databaseEntityByUsername = gitHubRepositoryClient.getDatabaseEntityByUsername(username);
-        return mapper.mapFromDatabaseEntityToClientResponseDto(databaseEntityByUsername);
+        ClientResponseDto response = mapper.mapFromDatabaseEntityToClientResponseDto(databaseEntityByUsername);
+        log.info("Get all repositories for username: " + username);
+        return ResponseEntity.ok(response);
     }
 
 }

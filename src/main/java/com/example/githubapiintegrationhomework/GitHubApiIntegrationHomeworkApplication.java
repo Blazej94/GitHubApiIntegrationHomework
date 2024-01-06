@@ -1,7 +1,6 @@
 package com.example.githubapiintegrationhomework;
 
-import com.example.githubapiintegrationhomework.model.DatabaseEntity;
-import com.example.githubapiintegrationhomework.GithubClient.GitHubRepositoryService;
+import com.example.githubapiintegrationhomework.githubClient.GitHubRepositoryService;
 import feign.FeignException;
 import feign.RetryableException;
 import lombok.extern.log4j.Log4j2;
@@ -27,6 +26,7 @@ public class GitHubApiIntegrationHomeworkApplication {
     @EventListener(ApplicationStartedEvent.class)
     public void run() {
         try {
+            log.info("Hello world");
 
         } catch (FeignException.FeignClientException feignException) {
             log.error("client exception: " + feignException.status());

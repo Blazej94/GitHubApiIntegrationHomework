@@ -1,4 +1,4 @@
-package com.example.githubapiintegrationhomework.Server;
+package com.example.githubapiintegrationhomework.server;
 
 import java.util.List;
 

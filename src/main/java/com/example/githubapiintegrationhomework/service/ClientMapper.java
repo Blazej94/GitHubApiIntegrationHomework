@@ -1,8 +1,8 @@
 package com.example.githubapiintegrationhomework.service;
 
-import com.example.githubapiintegrationhomework.Server.BranchClientResponseDto;
-import com.example.githubapiintegrationhomework.Server.ClientResponseDto;
-import com.example.githubapiintegrationhomework.Server.RepositoryClientResponseDto;
+import com.example.githubapiintegrationhomework.server.BranchClientResponseDto;
+import com.example.githubapiintegrationhomework.server.ClientResponseDto;
+import com.example.githubapiintegrationhomework.server.RepositoryClientResponseDto;
 import com.example.githubapiintegrationhomework.model.Branch;
 import com.example.githubapiintegrationhomework.model.DatabaseEntity;
 import com.example.githubapiintegrationhomework.model.Repository;
