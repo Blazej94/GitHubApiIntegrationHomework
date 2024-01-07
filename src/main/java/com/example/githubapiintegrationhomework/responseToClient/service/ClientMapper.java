@@ -41,5 +41,4 @@ public class ClientMapper {
     private BranchClientResponseDto mapFromBranchToBranchClientResponseDto(BranchEntity branchEntity) {
         return new BranchClientResponseDto(branchEntity.name(), branchEntity.commit());
     }
-
 }

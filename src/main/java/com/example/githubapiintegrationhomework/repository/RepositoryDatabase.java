@@ -1,4 +1,4 @@
-package com.example.githubapiintegrationhomework.responseToClient.repository;
+package com.example.githubapiintegrationhomework.repository;
 
 import com.example.githubapiintegrationhomework.model.DatabaseEntity;
 import com.example.githubapiintegrationhomework.model.RepositoryGithubEntity;
@@ -17,5 +17,4 @@ public class RepositoryDatabase {
         repositoriesDatabase.put(userName, repositories);
         return databaseEntity;
     }
-
 }

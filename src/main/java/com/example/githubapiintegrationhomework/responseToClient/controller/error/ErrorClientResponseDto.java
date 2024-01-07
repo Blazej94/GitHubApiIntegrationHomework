@@ -3,5 +3,5 @@ package com.example.githubapiintegrationhomework.responseToClient.controller.err
 import com.example.githubapiintegrationhomework.responseToClient.controller.ClientResponseDtoInterface;
 import org.springframework.http.HttpStatus;
 
-public record ErrorClientResponseDto(HttpStatus status, String Message) implements ClientResponseDtoInterface {
+public record ErrorClientResponseDto(int status, String Message) implements ClientResponseDtoInterface {
 }

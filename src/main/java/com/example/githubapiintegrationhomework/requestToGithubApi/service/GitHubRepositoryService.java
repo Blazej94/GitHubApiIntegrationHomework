@@ -1,6 +1,6 @@
 package com.example.githubapiintegrationhomework.requestToGithubApi.service;
 
-import com.example.githubapiintegrationhomework.responseToClient.repository.RepositoryDatabase;
+import com.example.githubapiintegrationhomework.repository.RepositoryDatabase;
 import com.example.githubapiintegrationhomework.requestToGithubApi.dto.BranchGithubResponseDto;
 import com.example.githubapiintegrationhomework.requestToGithubApi.dto.RepositoryGithubResponseDto;
 import com.example.githubapiintegrationhomework.model.DatabaseEntity;

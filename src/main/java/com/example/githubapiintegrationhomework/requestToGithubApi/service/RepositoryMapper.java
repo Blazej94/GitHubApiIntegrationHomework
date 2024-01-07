@@ -27,5 +27,4 @@ import java.util.List;
         );
         return branchEntities;
     }
-
 }
